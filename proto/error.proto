@@ -1,0 +1,9 @@
+syntax = "proto3";
+option go_package = "/pb";
+
+package proto;
+
+message Error {
+  string type = 1;
+  string message = 2;
+}

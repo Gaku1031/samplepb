@@ -1,0 +1,59 @@
+// QueryService用のParam型とResult型を定義したprotoファイル
+
+syntax = "proto3";
+option go_package = "/pb";
+
+import "proto/error.proto";
+import "proto/models.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+package proto;
+
+message CategoryParam {
+  string id = 1;
+}
+
+message CategoriesResult {
+  repeated Category categories = 1;
+  Error error = 2;
+  google.protobuf.Timestamp timestamp = 3;
+}
+
+message CategoryResult {
+  oneof result { // エラーか検索結果のいずれかを返す
+    Category category = 1;
+    Error error = 2;
+  }
+  google.protobuf.Timestamp timestamp = 3;
+}
+
+message ProductParam {
+  string id = 1;
+  string keyword = 2;
+}
+
+message ProductsResult {
+  repeated Product products = 1;
+  Error error = 2;
+  google.protobuf.Timestamp timestamp = 3;
+}
+
+message ProductResult {
+  oneof result {
+    Product product = 1;
+    Error error = 2;
+  }
+  google.protobuf.Timestamp timestamp = 3;
+}
+
+service CategoryQuery {
+  rpc List(google.protobuf.Empty) returns (CategoriesResult); // 引数は必要ないのでgoogle.protobuf.Emptyを利用
+  rpc ById(CategoryParam) returns (CategoryResult);
+}
+
+service ProductQuery {
+  rpc List(google.protobuf.Empty) returns (ProductsResult);
+  rpc ById(ProductParam) returns (ProductResult);
+  rpc ByKeyword(ProductParam) returns (ProductsResult);
+}

@@ -1,0 +1,17 @@
+// クライアントとサーバ間で利用するデータ格納型を定義
+
+syntax = "proto3";
+option go_package = "/pb";
+package proto;
+
+message Category {
+  string id = 1; // カテゴリ番号
+  string name = 2; // カテゴリ名
+}
+
+message Product {
+  string id = 1; // 商品番号
+  string name = 2; // 商品名
+  int32 price = 3; // 単価
+  optional Category category = 4; // カテゴリ
+}

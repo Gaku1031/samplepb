@@ -1,0 +1,7 @@
+services:
+  sampleproto:
+    container_name: sample-proto
+    build: .
+    tty: true
+    volumes:
+    - .:/go/src/samplepb
