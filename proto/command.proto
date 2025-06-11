@@ -27,7 +27,7 @@ message ProductUpParam {
   CRUD crud = 1; // 更新の種類
   string id = 2;
   string name = 3;
-  int32 price = 4;
+  uint32 price = 4;
   string categoryId = 5;
 }
 
