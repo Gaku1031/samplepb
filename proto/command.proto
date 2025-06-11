@@ -18,15 +18,17 @@ enum CRUD {
 }
 
 message CategoryUpParam {
-  string id = 1;
-  string name = 2;
+  CRUD crud = 1; // 更新の種類
+  string id = 2;
+  string name = 3;
 }
 
 message ProductUpParam {
-  string id = 1;
-  string name = 2;
-  int32 price = 3;
-  string categoryId = 4;
+  CRUD crud = 1; // 更新の種類
+  string id = 2;
+  string name = 3;
+  int32 price = 4;
+  string categoryId = 5;
 }
 
 message CategoryUpResult {
